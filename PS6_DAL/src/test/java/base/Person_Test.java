@@ -50,7 +50,34 @@ public class Person_Test {
 		person1.setPostalCode(21921);
 		
 	}
+	@Test
+	public void AddGetPersonTest(){
+		PersonDAL.addPerson(person1);
+		assertTrue(PersonDAL.getPerson(person1.getPersonID()) == person1);
+		
+	}
 	
+	@Test
+	public void AddGetPeopleTest(){
+		PersonDAL.addPerson(person1);
+		ArrayList<PersonDomainModel> list1 = PersonDAL.getPeople();
+		assertTrue(list1.get(0) == person1);
+	}
+	
+	@Test
+	public void AddUpdatePersonTest(){
+		PersonDAL.addPerson(person1);
+		person1.setMiddleName("A");
+		PersonDAL.updatePerson(person1);
+		assertTrue(PersonDAL.getPerson(person1.getPersonID()).getMiddleName() == "A");
+	}
+	 @Test
+	 public void AddDeletePersonTest(){
+		 PersonDAL.addPerson(person1);
+		 PersonDAL.deletePerson(person1.getPersonID());
+		 ArrayList<PersonDomainModel> list1 = PersonDAL.getPeople();
+		 assertTrue(list1.get(0) != person1);
+	 }
 	
 
 }
